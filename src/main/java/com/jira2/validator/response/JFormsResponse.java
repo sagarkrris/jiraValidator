@@ -27,10 +27,22 @@ public class JFormsResponse
     private String summary;
     private String dueDate;
     private String timeEstimate;
+    private String requirements;
+    private String projectTraceability;
+    private String sourceCode;
+    private String technicalDesignDocumentation;
+    private String testCaseReview;
+    private String dIApprovalsComplete;
+    private String dOApprovalsComplete;
+    private String dIOeSignatureComplete;
+    private String designConsiderationsIncluded;
+    private String addChangeSolutionCapabilities;
+    private String changesOrImpactToHazardAnalysis;
+
     private Assignee assignee;
     private List<Attachment> attachments = new ArrayList<>();
     private List<String> labels;
     private List<People> diApprovers;
     private List<People> doApprovers;
-
+    private List<String> ppmSolutionDetailId = new ArrayList<>();
 }

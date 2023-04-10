@@ -1,7 +1,9 @@
 package com.jira2.validator.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -251,7 +253,17 @@ public class Fields
     private String customfield_22501 = null;
     private String customfield_18001;
     private String customfield_22500 = null;
-    List<Object> customfield_18000 = new ArrayList<Object>();
+    private List<String> customfield_18000 = new ArrayList<>();
     private String customfield_10400 = null;
-
+    private String customfield_20336;
+    private String customfield_20332;
+    private Object customfield_20320;
+    private String customfield_20322;
+    private Object customfield_20328;
+    private String customfield_20324;
+    private String customfield_20326;
+    private String customfield_20030;
+    private String customfield_20340;
+    private String customfield_20342;
+    private Object customfield_20350;
 }
