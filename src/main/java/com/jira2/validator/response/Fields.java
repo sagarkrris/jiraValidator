@@ -1,9 +1,7 @@
 package com.jira2.validator.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +48,11 @@ public class Fields
     private String customfield_18901 = null;
     private Object customfield_20323 = null;
     private Object customfield_20327 = null;
-    List<String> labels = new ArrayList<>();
+    private List<String> labels = new ArrayList<>();
     private String aggregatetimeoriginalestimate = null;
-    List<Object> issuelinks = new ArrayList<Object>();
-    Assignee assignee;
+    private List<Object> issuelinks = new ArrayList<Object>();
+    private Assignee assignee;
+    private Object issues;
     private String customfield_23600 = null;
     private String customfield_23601 = null;
     private String customfield_19300 = null;
@@ -72,7 +71,7 @@ public class Fields
     private String customfield_17000 = null;
     private String customfield_19303 = null;
     private String customfield_17800 = null;
-    private String customfield_10600 = null;
+    private Object customfield_10600 = null;
     private String customfield_22700 = null;
     private String customfield_18200 = null;
     private String customfield_14400 = null;

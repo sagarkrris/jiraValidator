@@ -50,10 +50,6 @@ public class Jira2CheckList
             {
                 log.info("Valid Status: {}", jiraStatus);
             }
-            else
-            {
-                throw new RuntimeException("Unexpected status   " + jiraStatus);
-            }
         });
         return jiraStatus;
     }
