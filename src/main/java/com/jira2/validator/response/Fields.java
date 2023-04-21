@@ -12,6 +12,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Fields
 {
+
     private String customfield_11800;
     private String customfield_11002;
     private String customfield_12301;
@@ -266,4 +267,11 @@ public class Fields
     private String customfield_20340;
     private String customfield_20342;
     private Object customfield_20350;
+    private List<String> customfield_20337 = new ArrayList<>();
+    private List<String> customfield_20338 = new ArrayList<>();
+    private List<String> customfield_20330 = new ArrayList<>();
+    private String customfield_20331;
+
+
+
 }

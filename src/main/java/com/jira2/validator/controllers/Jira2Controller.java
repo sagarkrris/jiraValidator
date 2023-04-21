@@ -3,7 +3,7 @@ package com.jira2.validator.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jira2.validator.response.JFormsResponse;
 import com.jira2.validator.response.Jira2Response;
-import com.jira2.validator.reviewchecklist.JformCheckList;
+//import com.jira2.validator.reviewchecklist.JformCheckList;
 import com.jira2.validator.services.Jira2Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +33,7 @@ public class Jira2Controller
     }
 
     @GetMapping("/jform/{jformId}")
-    public JformCheckList getJFormDetails(@PathVariable String jformId) throws JsonProcessingException
+    public JFormsResponse getJFormDetails(@PathVariable String jformId) throws JsonProcessingException
     {
         if(null != jformId)
         {
