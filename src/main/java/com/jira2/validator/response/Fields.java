@@ -151,7 +151,7 @@ public class Fields
     private String customfield_21800 = null;
     private String customfield_21000 = null;
     private String customfield_17302 = null;
-    List<Object> fixVersions = new ArrayList<Object>();
+    private List<Object> fixVersions = new ArrayList<Object>();
     private String customfield_11200;
     private String customfield_10901 = null;
     private String customfield_16321 = null;
@@ -172,7 +172,7 @@ public class Fields
     private Object customfield_14812 = null;
     private String customfield_14813;
     private String customfield_16319 = null;
-    List<Object> customfield_21900 = new ArrayList<Object>();
+    private List<Object> customfield_21900 = new ArrayList<Object>();
     private String customfield_21100 = null;
     private String customfield_16310 = null;
     private String customfield_16314 = null;
@@ -186,7 +186,7 @@ public class Fields
     private String customfield_14803;
     private String customfield_10205;
     private String customfield_16309 = null;
-    List<Object> customfield_14801 = new ArrayList<Object>();
+    private List<Object> customfield_14801 = new ArrayList<Object>();
     private String customfield_16308 = null;
     private String customfield_10206 = null;
     private Object customfield_10208 = null;
@@ -196,7 +196,7 @@ public class Fields
     private String customfield_22300 = null;
     private String customfield_14000;
     private String customfield_16307 = null;
-    List<Object> customfield_14800 = new ArrayList<Object>();
+    private List<Object> customfield_14800 = new ArrayList<Object>();
     private String customfield_10202 = null;
     private String customfield_14913 = null;
     private String customfield_14914 = null;

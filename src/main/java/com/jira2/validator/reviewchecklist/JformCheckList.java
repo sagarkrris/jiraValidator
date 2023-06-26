@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class JformCheckList
 {
-    JFormsResponse jFormsResponse;
+    private JFormsResponse jFormsResponse;
 }

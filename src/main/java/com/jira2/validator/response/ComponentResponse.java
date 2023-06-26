@@ -15,7 +15,7 @@ public class ComponentResponse
     private String id;
     private String self;
     private String key;
-    Fields fields;
+    private Fields fields;
     private String jiraTitle;
     private List<String> acceptanceCriteria = new ArrayList<>();
 }
