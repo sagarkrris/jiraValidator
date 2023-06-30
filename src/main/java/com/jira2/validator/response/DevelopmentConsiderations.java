@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DevelopmentConsiderations
-{
+public class DevelopmentConsiderations {
+
     private String self;
     private String value;
-
 }
