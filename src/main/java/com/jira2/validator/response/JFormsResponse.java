@@ -16,6 +16,10 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class JFormsResponse
 {
+    private List<String> solution;
+    private List<String> solutionDetails;
+    private List<String> jiraGroup;
+    private String projectIdentifiers;
     private List<Object> components;
     private String status;
     private String description;
@@ -35,9 +39,10 @@ public class JFormsResponse
     private String dIApprovalsComplete;
     private String dOApprovalsComplete;
     private String dIOeSignatureComplete;
-    private String designConsiderationsIncluded;
+    private String developmentConsiderationsIncluded;
     private String addChangeSolutionCapabilities;
     private String changesOrImpactToHazardAnalysis;
+
 
     private Assignee assignee;
     private List<Attachment> attachments = new ArrayList<>();

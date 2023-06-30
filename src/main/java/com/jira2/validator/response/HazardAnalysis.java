@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class HazardAnalysis
-{
+public class HazardAnalysis {
+
     private String self;
     private String value;
-
 }
+
