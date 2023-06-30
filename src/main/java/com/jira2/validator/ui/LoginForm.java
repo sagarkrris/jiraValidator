@@ -3,22 +3,14 @@ package com.jira2.validator.ui;
 import com.jira2.validator.Jira2Application;
 import com.jira2.validator.services.Jira2Service;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-
-
-
-public class LoginForm extends JFrame implements ActionListener {
+public class LoginForm extends JFrame implements ActionListener
+{
 
     private static final long serialVersionUID = 1L;
     // Components of the Form
@@ -38,7 +30,8 @@ public class LoginForm extends JFrame implements ActionListener {
 
     // constructor, to initialize the components
     // with default values.
-    public LoginForm() {
+    public LoginForm()
+    {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 1308, 737);
         contentPane = new JPanel();
@@ -138,47 +131,58 @@ public class LoginForm extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
-    public JTextField getUsername() {
+    public JTextField getUsername()
+    {
         return username;
     }
 
-
-    public static void setUsername(String username) {
+    public static void setUsername(String username)
+    {
         LoginForm.username.setText(username);
     }
 
-
-    public JPasswordField getPassword() {
+    public JPasswordField getPassword()
+    {
         return password;
     }
 
-
-    public static void setPassword(String password) {
+    public static void setPassword(String password)
+    {
         LoginForm.password.setText(password);
     }
 
     @SuppressWarnings("deprecation")
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == showPasswordCheckBox) {
-            if (showPasswordCheckBox.isSelected()) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getSource() == showPasswordCheckBox)
+        {
+            if(showPasswordCheckBox.isSelected())
+            {
                 password.setEchoChar((char) 0);
-            } else {
+            }
+            else
+            {
                 password.setEchoChar('*');
             }
-        } else if (e.getSource() == btnLogin) {
-            if (username.getText().isEmpty() || password.getText().isEmpty()) {
+        }
+        else if(e.getSource() == btnLogin)
+        {
+            if(username.getText().isEmpty() || password.getText().isEmpty())
+            {
                 JOptionPane.showMessageDialog(null, "Please Enter both Username and Password fields");
-            } else {
+            }
+            else
+            {
                 System.out.println("Login Clicked");
                 Username = username.getText();
                 Password = password.getText();
                 new Jira2Application();
-                if(Jira2Service.JiraLogin(Username,Password)){
+                if(Jira2Service.JiraLogin(Username, Password))
+                {
                     SmartValidatorLauncher.main();
 
                 }
-               // LoginController.main(Username, Password);
+                // LoginController.main(Username, Password);
             }
             setVisible(false);
         }
@@ -186,16 +190,13 @@ public class LoginForm extends JFrame implements ActionListener {
 }
 
 /**
- * 146 // Create lblExit JLabel to close the operation. lblExit = new
- * JLabel("X"); lblExit.addMouseListener(new MouseAdapter() {
- *
+ * 146 // Create lblExit JLabel to close the operation. lblExit = new JLabel("X"); lblExit.addMouseListener(new MouseAdapter() {
  * @Override public void mouseClicked(MouseEvent e) { setVisible(false);
- *
- *           } }); lblExit.setFont(new Font("Times New Roman", Font.BOLD, 16));
- *           lblExit.setVerticalAlignment(SwingConstants.TOP);
- *           lblExit.setHorizontalAlignment(SwingConstants.CENTER);
- *           lblExit.setForeground(Color.WHITE); lblExit.setBounds(362, 11, 27,
- *           36); headingPanel.add(lblExit);
+ *         } }); lblExit.setFont(new Font("Times New Roman", Font.BOLD, 16)); lblExit.setVerticalAlignment(SwingConstants.TOP);
+ *         lblExit.setHorizontalAlignment(SwingConstants.CENTER); lblExit.setForeground(Color.WHITE); lblExit.setBounds(362, 11,
+ *         27, 36); headingPanel.add(lblExit);
+ *         115 public void actionPerformed(ActionEvent e) { if (showPasswordCheckBox.isSelected()) { password.setEchoChar((char)
+ *         0); } else { password.setEchoChar('*'); } } });
  */
 
 /**

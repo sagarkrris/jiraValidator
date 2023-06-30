@@ -42,19 +42,15 @@ public class SmartValidatorLauncher extends JFrame implements ActionListener
      */
     public static void main()
     {
-        EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
+        EventQueue.invokeLater(() -> {
+            try
             {
-                try
-                {
-                    SmartValidatorLauncher window = new SmartValidatorLauncher();
-                    window.frame.setVisible(true);
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
+                SmartValidatorLauncher window = new SmartValidatorLauncher();
+                window.frame.setVisible(true);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
             }
         });
     }

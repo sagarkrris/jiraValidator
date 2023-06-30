@@ -1,27 +1,19 @@
 package com.jira2.validator.ui;
 
-import java.awt.EventQueue;
-import java.io.IOException;
+import java.awt.*;
 
 /**
- * The UserInterface class is implemented with JFrame to design
- * Login page for the user
- *
+ * The UserInterface class is implemented with JFrame to design Login page for the user
  */
 
 //Driver Code
-public class LoginFormUserInterface {
+public class LoginFormUserInterface
+{
 
-       public static void main(String[] args) {
+    public static void main(String[] args)
+    {
 
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-                LoginForm frame = new LoginForm();
-
-
-            }
-        });
+        EventQueue.invokeLater(LoginForm::new);
     }
 
 }

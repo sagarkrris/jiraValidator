@@ -19,14 +19,7 @@ public class Jira2CheckList
 
     private void issueTypeValidator(String issueType)
     {
-        if(issueType.equals("Defect"))
-        {
-            log.info("Issue Type is: {}", issueType);
-        }
-        else
-        {
-            log.info("Issue Type is: {}", issueType);
-        }
+        log.info("Issue Type is: {}", issueType);
     }
 
     private void componentsValidator(List<Object> components)
