@@ -33,4 +33,5 @@ public class Jira2Response
     private List<Attachment> attachments = new ArrayList<>();
     private List<String> labels;
     private List<String> ppmSolutionDetailId = new ArrayList<>();
+    private Development development;
 }

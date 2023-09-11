@@ -2,9 +2,10 @@ package com.jira2.validator.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.jira2.validator.response.*;
-//import com.jira2.validator.reviewchecklist.JformCheckList;
 import com.jira2.validator.reviewchecklist.JFormCheckList;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,20 +38,30 @@ public class Jira2Service
         //change the url
         String url = "https://jira2.cerner.com/rest/api/2/issue/" + issueId;
         // create headers
-        log.info("URL: {}", url);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Basic " + "c2sxMDAyNTE6TWFsYXJpYUAyMDIz");
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        // create request
+        request = new HttpEntity<>(headers);
         ResponseEntity<ComponentResponse> responseEntity = new RestTemplate().exchange(url, HttpMethod.GET, request,
                 ComponentResponse.class);
         ComponentResponse componentResponse = responseEntity.getBody();
         log.info("Response: " + componentResponse);
-        ObjectMapper om = new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.registerModule(new Jdk8Module());
         List<Attachment> attachmentList;
         try
         {
-            attachmentList = om.readValue(
-                    om.writerWithDefaultPrettyPrinter().writeValueAsString(componentResponse.getFields().getAttachment()),
-                    new TypeReference<List<Attachment>>()
-                    {
-                    });
+            attachmentList = objectMapper.readValue(objectMapper.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(componentResponse.getFields().getAttachment()), new TypeReference<List<Attachment>>()
+            {
+            });
+
+           /* log.info("Cached Value: " + StringUtils.indexOf(componentResponse.getFields().getCustomfield_19700(),
+                    "cachedValue"));*/
+            log.info("Development Summary: " + objectMapper.readValue((componentResponse.getFields().getCustomfield_19700()),
+                    DevSummary.class));
         }
         catch(JsonProcessingException e)
         {
@@ -72,13 +83,30 @@ public class Jira2Service
                 .timeEstimate(componentResponse.getFields().getTimeestimate()).attachments(attachmentList).build();
     }
 
-    public static boolean JiraLogin(String username, String password){
+    public static HttpHeaders jiraLogin(String username, String password, HttpHeaders headers)
+    {
+        System.out.println("JIRA Login");
+        // create headers
+
+        //please change the access jira token
+        // headers.add("Authorization", "Basic " + "c2sxMDAyNTE6TWFsYXJpYUAyMDIy");
+        String encoding = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+        log.info("Base64 encoding: {}", encoding);
+        headers.add("Authorization", "Basic " + encoding);
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        return headers;
+    }
+
+    public static boolean jiraLogin(String username, String password)
+    {
         System.out.println("JIRA Login");
         // create headers
         HttpHeaders headers = new HttpHeaders();
         //please change the access jira token
         // headers.add("Authorization", "Basic " + "c2sxMDAyNTE6TWFsYXJpYUAyMDIy");
-        String encoding = Base64.getEncoder().encodeToString((username+":"+password).getBytes());
+        String encoding = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
+        log.info("Base64 encoding: {}", encoding);
         headers.add("Authorization", "Basic " + encoding);
         headers.add("Accept", "application/json");
         headers.add("Content-Type", "application/json");
@@ -98,6 +126,10 @@ public class Jira2Service
         //URL Formation please change this
         String url = "https://jira.cerner.com/rest/api/2/issue/" + jformId;
         // create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Basic " + "c2sxMDAyNTE6TWFsYXJpYUAyMDIz");
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
         log.info("URL: {}", url);
         ResponseEntity<ComponentResponse> responseEntity = new RestTemplate().exchange(url, HttpMethod.GET, request,
                 ComponentResponse.class);
@@ -146,10 +178,8 @@ public class Jira2Service
         }
 
         JFormsResponse jFormsResponse = JFormsResponse.builder().acceptanceCriteria(fields.getCustomfield_11800())
-                .solution(fields.getCustomfield_20337())
-                .solutionDetails(fields.getCustomfield_20338())
-                .jiraGroup(fields.getCustomfield_20330())
-                .projectIdentifiers(fields.getCustomfield_20331())
+                .solution(fields.getCustomfield_20337()).solutionDetails(fields.getCustomfield_20338())
+                .jiraGroup(fields.getCustomfield_20330()).projectIdentifiers(fields.getCustomfield_20331())
                 .jiraGroups(fields.getCustomfield_14802()).issueType(fields.getIssuetype().getName())
                 .components(fields.getComponents()).epicName(fields.getCustomfield_11002())
                 .projectNumberOrTime(fields.getCustomfield_12301()).status(fields.getStatus().getName())

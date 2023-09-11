@@ -177,7 +177,7 @@ public class LoginForm extends JFrame implements ActionListener
                 Username = username.getText();
                 Password = password.getText();
                 new Jira2Application();
-                if(Jira2Service.JiraLogin(Username, Password))
+                if(Jira2Service.jiraLogin(Username, Password))
                 {
                     SmartValidatorLauncher.main();
 

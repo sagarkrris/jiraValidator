@@ -57,17 +57,17 @@ public class Fields
     private String customfield_23600 = null;
     private String customfield_23601 = null;
     private String customfield_19300 = null;
-    private String customfield_23602 = null;
+    private Object customfield_23602 = new ArrayList<>();
     private String customfield_19301 = null;
-    private String customfield_23603 = null;
+    private Object customfield_23603 = null;
     private String customfield_19302 = null;
     private String customfield_23604 = null;
     private String customfield_17003 = null;
-    private String customfield_23605 = null;
+    private Object customfield_23605 = null;
     private String customfield_17002 = null;
-    private String customfield_23606 = null;
+    private Object customfield_23606 = null;
     private String customfield_17001 = null;
-    private String customfield_23607 = null;
+    private Object customfield_23607 = null;
     private String customfield_23000 = null;
     private String customfield_17000 = null;
     private String customfield_19303 = null;
@@ -82,32 +82,32 @@ public class Fields
     private String customfield_23502 = null;
     private String customfield_23503 = null;
     private String customfield_23504 = null;
-    private String customfield_23505 = null;
+    private Object customfield_23505 = null;
     private String customfield_17102 = null;
-    private String customfield_23506 = null;
+    private Object customfield_23506 = null;
     private String customfield_17101 = null;
-    private String customfield_23507 = null;
-    private String customfield_23508 = null;
-    private String customfield_23509 = null;
+    private Object customfield_23507 = null;
+    private Object customfield_23508 = null;
+    private Object customfield_23509 = null;
     private String customfield_11000 = null;
     private String customfield_11003;
     private String customfield_10700 = null;
     private String customfield_10701 = null;
     private Object customfield_10703 = null;
     private Object customfield_10704 = null;
-    private String customfield_23510 = null;
+    private Object customfield_23510 = null;
     private String customfield_22800;
-    private String customfield_23511 = null;
-    private String customfield_23512 = null;
-    private String customfield_23513 = null;
-    private String customfield_23514 = null;
-    private String customfield_23515 = null;
+    private Object customfield_23511 = null;
+    private Object customfield_23512 = null;
+    private Object customfield_23513 = null;
+    private Object customfield_23514 = null;
+    private Object customfield_23515 = null;
     private String customfield_18301 = null;
-    private String customfield_23516 = null;
-    private String customfield_23517 = null;
-    private String customfield_23518 = null;
+    private Object customfield_23516 = null;
+    private Object customfield_23517 = null;
+    private Object customfield_23518 = null;
     private String customfield_22000;
-    private String customfield_23519 = null;
+    private Object customfield_23519 = null;
     private String customfield_18302 = null;
     private String customfield_18303 = null;
     private Object customfield_14500 = null;
@@ -115,7 +115,7 @@ public class Fields
     private String customfield_10016 = null;
     private String customfield_11900 = null;
     private float customfield_21702;
-    private String customfield_23520 = null;
+    private List<Object> customfield_23520 = new ArrayList<>();
     private String updated;
     private String customfield_19500 = null;
     private String customfield_17201 = null;
@@ -270,7 +270,4 @@ public class Fields
     private List<String> customfield_20338 = new ArrayList<>();
     private List<String> customfield_20330 = new ArrayList<>();
     private String customfield_20331;
-
-
-
 }
