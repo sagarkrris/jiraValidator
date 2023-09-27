@@ -25,14 +25,14 @@ public class Jira2Service
 {
     @Autowired
     private RestTemplate restTemplate;
-    static HttpEntity<?> request;
+    private static HttpEntity<?> request;
 
     /**
      * Returns the Jira Issue Details for the specified issue Id
      * @param issueId the issue Id of the jira issue
      * @return {@link Jira2Response}
      */
-    public Jira2Response getIssueDetails(String issueId)
+    public static Jira2Response getIssueDetails(String issueId)
     {
         //URL Formation
         //change the url
@@ -58,10 +58,6 @@ public class Jira2Service
             {
             });
 
-           /* log.info("Cached Value: " + StringUtils.indexOf(componentResponse.getFields().getCustomfield_19700(),
-                    "cachedValue"));*/
-            log.info("Development Summary: " + objectMapper.readValue((componentResponse.getFields().getCustomfield_19700()),
-                    DevSummary.class));
         }
         catch(JsonProcessingException e)
         {
@@ -70,6 +66,7 @@ public class Jira2Service
 
         }
         return Jira2Response.builder().acceptanceCriteria(componentResponse.getFields().getCustomfield_11800())
+                .reporter(componentResponse.getFields().getCustomfield_22800())
                 .jiraGroups(componentResponse.getFields().getCustomfield_14802())
                 .issueType(componentResponse.getFields().getIssuetype().getName())
                 .components(componentResponse.getFields().getComponents())
@@ -79,6 +76,7 @@ public class Jira2Service
                 .description(componentResponse.getFields().getDescription()).summary(componentResponse.getFields().getSummary())
                 .dueDate(componentResponse.getFields().getDuedate()).description(componentResponse.getFields().getDescription())
                 .labels(componentResponse.getFields().getLabels())
+                .devSummary(componentResponse.getFields().getCustomfield_19700())
                 .ppmSolutionDetailId(componentResponse.getFields().getCustomfield_18000())
                 .timeEstimate(componentResponse.getFields().getTimeestimate()).attachments(attachmentList).build();
     }
@@ -121,7 +119,7 @@ public class Jira2Service
      * @param jformId the given jFormId
      * @return {@link JFormsResponse}
      */
-    public JFormsResponse getJFormDetails(String jformId)
+    public static JFormsResponse getJFormDetails(String jformId)
     {
         //URL Formation please change this
         String url = "https://jira.cerner.com/rest/api/2/issue/" + jformId;
@@ -131,6 +129,7 @@ public class Jira2Service
         headers.add("Accept", "application/json");
         headers.add("Content-Type", "application/json");
         log.info("URL: {}", url);
+        request = new HttpEntity<>(headers);
         ResponseEntity<ComponentResponse> responseEntity = new RestTemplate().exchange(url, HttpMethod.GET, request,
                 ComponentResponse.class);
         ComponentResponse componentResponse = responseEntity.getBody();
@@ -140,6 +139,7 @@ public class Jira2Service
         List<People> diApproverList;
         List<People> doApproverList;
         List<Attachment> attachmentList;
+        assert componentResponse != null;
         Fields fields = componentResponse.getFields();
         SolutionCapabilities solutionCapabilities;
         HazardAnalysis hazardAnalysis;
@@ -197,5 +197,35 @@ public class Jira2Service
         new JFormCheckList().JiraChecklist(jFormsResponse);
 
         return jFormsResponse;
+    }
+
+    /**
+     * Returns the Development Summary of the given jFormId
+     * @param jiraId the given jira id
+     */
+    public static Jira2Response getDevSummary(String jiraId)
+    {
+        //URL Formation please change this
+        String url = "https://jira2.cerner.com/rest/api/2/issue/" + jiraId;
+        // create headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Basic " + "c2sxMDAyNTE6TWFsYXJpYUAyMDIz");
+        headers.add("Accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        log.info("URL: {}", url);
+        request = new HttpEntity<>(headers);
+        ResponseEntity<ComponentResponse> responseEntity;
+        try
+        {
+            responseEntity = new RestTemplate().exchange(url, HttpMethod.GET, request, ComponentResponse.class);
+        }
+        catch(Exception e)
+        {
+            log.error("Exception while generating response: {}", e.getMessage(), e);
+            throw e;
+        }
+        ComponentResponse componentResponse = responseEntity.getBody();
+
+        return Jira2Response.builder().devSummary(componentResponse.getFields().getCustomfield_19700()).build();
     }
 }

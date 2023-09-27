@@ -78,10 +78,10 @@ public class Fields
     private String customfield_14400 = null;
     private String archivedby = null;
     private String customfield_23500 = null;
-    private String customfield_23501 = null;
+    private Object customfield_23501 = null;
     private String customfield_23502 = null;
     private String customfield_23503 = null;
-    private String customfield_23504 = null;
+    private Object customfield_23504 = null;
     private Object customfield_23505 = null;
     private String customfield_17102 = null;
     private Object customfield_23506 = null;

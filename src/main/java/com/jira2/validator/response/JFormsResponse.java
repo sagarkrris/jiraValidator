@@ -1,6 +1,7 @@
 package com.jira2.validator.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder(alphabetic = true)
 public class JFormsResponse
 {
     private List<String> solution;

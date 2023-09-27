@@ -1,10 +1,9 @@
 package com.jira2.validator.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jira2.validator.response.JFormsResponse;
 import com.jira2.validator.response.Jira2Response;
-//import com.jira2.validator.reviewchecklist.JformCheckList;
 import com.jira2.validator.services.Jira2Service;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,19 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Jira2Controller
 {
-    private Jira2Service jira2Service;
-
-    public Jira2Controller(Jira2Service jira2Service)
-    {
-        this.jira2Service = jira2Service;
-    }
-
     @GetMapping("/issue/{issueId}")
-    public Jira2Response getIssueDetails(@PathVariable String issueId) throws JsonProcessingException
+    public Jira2Response getIssueDetails(@PathVariable String issueId)
     {
-        if(null != issueId)
+        if(StringUtils.isNotEmpty(issueId))
         {
-            return jira2Service.getIssueDetails(issueId);
+            return Jira2Service.getIssueDetails(issueId);
         }
         else
         {
@@ -33,15 +25,28 @@ public class Jira2Controller
     }
 
     @GetMapping("/jform/{jformId}")
-    public JFormsResponse getJFormDetails(@PathVariable String jformId) throws JsonProcessingException
+    public JFormsResponse getJFormDetails(@PathVariable String jformId)
     {
-        if(null != jformId)
+        if(StringUtils.isNotEmpty(jformId))
         {
-            return jira2Service.getJFormDetails(jformId);
+            return Jira2Service.getJFormDetails(jformId);
         }
         else
         {
             throw new IllegalArgumentException("JForm ID cannot be null or empty");
+        }
+    }
+
+    @GetMapping("/jira/{jiraId}")
+    public Jira2Response getDevSummary(@PathVariable String jiraId)
+    {
+        if(StringUtils.isNotEmpty(jiraId))
+        {
+            return Jira2Service.getDevSummary(jiraId);
+        }
+        else
+        {
+            throw new IllegalArgumentException("Jira ID cannot be null or empty");
         }
     }
 }
