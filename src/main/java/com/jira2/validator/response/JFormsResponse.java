@@ -45,7 +45,6 @@ public class JFormsResponse
     private String addChangeSolutionCapabilities;
     private String changesOrImpactToHazardAnalysis;
 
-
     private Assignee assignee;
     private List<Attachment> attachments = new ArrayList<>();
     private List<String> labels;

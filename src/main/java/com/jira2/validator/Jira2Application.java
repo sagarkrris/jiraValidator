@@ -11,10 +11,13 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class Jira2Application
 {
-
+    private static final Optional<String> port = Optional.ofNullable(System.getenv("PORT"));
+    public static final String BASE_URI = "http://0.0.0.0:"+port.orElse("8080")+"/myapp/";
     public static void main(String[] args)
     {
         SpringApplication.run(Jira2Application.class, args);
